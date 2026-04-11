@@ -45,7 +45,7 @@ export default function Page() {
             <Link href="#editors">Explore Editors</Link>
           </Button>
           <Button size="lg" variant="outline" asChild>
-            <Link href="https://github.com" target="_blank">View on GitHub</Link>
+            <Link href="https://github.com/fapethedev/re-editor-for-coding" target="_blank">View on GitHub</Link>
           </Button>
         </div>
       </section>

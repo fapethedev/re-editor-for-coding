@@ -32,7 +32,7 @@ export function Navbar() {
         </div>
         <div className="flex items-center gap-4">
           <Button variant="outline" size="icon" asChild>
-            <Link href="https://github.com" target="_blank">
+            <Link href="https://github.com/fapethedev/re-editor-for-coding" target="_blank">
               <FaGithubAlt />
               <span className="sr-only">GitHub</span>
             </Link>
