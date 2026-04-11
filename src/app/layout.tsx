@@ -1,26 +1,59 @@
-import { Geist, Geist_Mono, Playfair_Display, IBM_Plex_Sans } from "next/font/google"
+import React from "react";
+import { Metadata } from "next"
+import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
-import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
-
-const ibmPlexSansHeading = IBM_Plex_Sans({subsets:['latin'],variable:'--font-heading'});
-
-const playfairDisplay = Playfair_Display({subsets:['latin'],variable:'--font-serif'});
-
-const fontSans = Geist({
-  subsets: ["latin"],
-  variable: "--font-sans",
-})
-
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-})
-
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { SerwistProvider } from "@/app/serwist"
+import { SerwistProvider } from "@/app/serwist";
+import { ibmPlexSansHeading, playfairDisplay } from "@/app/font";
+import { TooltipProvider } from "@/components/ui/tooltip";
+
+export const metadata: Metadata = {
+  title: {
+    template: `%s | Re-Editor`,
+    default: "Re-Editor",
+    absolute: "Re-Editor",
+  },
+  description:
+    "Experiment with the most popular web text editors. Discover their features, specialties, and how to get started with them.",
+  applicationName: "Re-Editor",
+  publisher: "Fapethedev",
+  creator: "Fapethedev",
+  manifest: "/manifest.webmanifest",
+  openGraph: {
+    title: {
+      template: `%s | Re-Editor`,
+      default: "Re-Editor",
+      absolute: "Re-Editor",
+    },
+    description:
+      "Experiment with the most popular web text editors. Discover their features, specialties, and how to get started with them.",
+    type: "website",
+  },
+  twitter: {
+    title: {
+      template: `%s | Re-Editor`,
+      default: "Re-Editor",
+      absolute: "Re-Editor",
+    },
+    description:
+      "Experiment with the most popular web text editors. Discover their features, specialties, and how to get started with them.",
+    creator: "Fapethedev",
+    card: "summary",
+    site: "Re-Editor",
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Re-Editor",
+    startupImage: "/icon-512x512.png",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+}
 
 export default function RootLayout({
   children,
@@ -31,18 +64,20 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontSans.variable, fontMono.variable, "font-serif", playfairDisplay.variable, ibmPlexSansHeading.variable)}
+      className={cn("antialiased", "font-serif", playfairDisplay.variable, ibmPlexSansHeading.variable)}
     >
-      <body className="flex flex-col min-h-screen">
-      <SerwistProvider swUrl="/sw.js" /* disable={process.env.NODE_ENV === "development"} */>
-        <ThemeProvider>
-            <Navbar />
-            <main className="flex-1 flex flex-col">
-              {children}
-            </main>
-            <Footer />
+      <body className="flex min-h-screen flex-col">
+        <SerwistProvider
+          swUrl="/sw.js" /* disable={process.env.NODE_ENV === "development"} */
+        >
+          <ThemeProvider>
+            <TooltipProvider>
+              <Navbar />
+              <main className="flex flex-1 flex-col">{children}</main>
+              <Footer />
+            </TooltipProvider>
           </ThemeProvider>
-      </SerwistProvider>
+        </SerwistProvider>
       </body>
     </html>
   )
