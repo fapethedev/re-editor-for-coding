@@ -12,7 +12,7 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <Link href="/" className="flex flex-row items-center justify-center gap-1 text-sm font-bold tracking-tight md:gap-4 md:text-xl">
             <div className="relative h-12 w-12 overflow-hidden md:h-14 md:w-14">
-              <Image src="/icon-transparent.png" alt="icon" fill />
+              <Image src="/icon-transparent.png" alt="icon" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
             </div>
             <h1 className="font-heading whitespace-nowrap">
               Playground <span className="text-primary">Editor</span>
