@@ -9,6 +9,9 @@ import { Footer } from "@/components/footer";
 import { SerwistProvider } from "@/app/serwist";
 import { ibmPlexSansHeading, playfairDisplay } from "@/app/font";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
+import InsightsProvider from "@/components/InsightsProvider";
 
 export const metadata: Metadata = {
   title: {
@@ -78,6 +81,9 @@ export default function RootLayout({
             </TooltipProvider>
           </ThemeProvider>
         </SerwistProvider>
+        <Analytics />
+        <SpeedInsights />
+        <InsightsProvider />
       </body>
     </html>
   )
