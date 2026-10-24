@@ -1,44 +1,78 @@
-# Re-Editor: Web Editor Playground
+<p align="center">
+  <img src="public/icon-transparent.png" alt="Re-Editor Logo" width="96" height="96" />
+</p>
 
-[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-blue?logo=react)](https://react.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38b2ac?logo=tailwind-css)](https://tailwindcss.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<h1 align="center">Re-Editor</h1>
 
-**Re-Editor** is a modern, high-performance web editor playground built with Next.js 16 and React 19. It provides a centralized environment to explore, compare, and experiment with the most popular web-based rich text and code editors.
+<p align="center">
+  A high-performance web editor playground built with Next.js 16 and React 19 to experiment, compare, and integrate modern text and code editors.
+</p>
+
+<p align="center">
+  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-16.4-black?logo=next.js" alt="Next.js" /></a>
+  <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-19.3-blue?logo=react" alt="React" /></a>
+  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-4.3-38b2ac?logo=tailwind-css" alt="Tailwind CSS" /></a>
+  <a href="https://serwist.js.org/"><img src="https://img.shields.io/badge/PWA-Serwist-orange" alt="Serwist PWA" /></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License" /></a>
+</p>
 
 ---
 
-## Key Features
+## Overview
 
-- **Multi-Editor Support**: Seamlessly switch between and test different editors:
-  - **Quill.js**: Modern rich text editor for high-quality content creation.
-  - **Monaco Editor**: The powerhouse behind VS Code, perfect for high-performance code editing with IntelliSense.
-  - **Editor.js**: Block-styled editor designed for modern, structured content (JSON-first).
-- **Modern UI/UX**: Crafted with **shadcn/ui** and **Radix UI** for a sleek, accessible, and responsive experience.
-- **PWA Ready**: Offline support and installation capabilities powered by **Serwist**.
-- **Theming**: Full dark and light mode support using `next-themes`.
-- **Internationalization**: Ready for global use with `next-intl`.
+**Re-Editor** is an interactive playground providing a unified environment to evaluate and compare leading web editors for modern web applications. Each playground route delivers live editing, formatted outputs, feature comparisons, and initialization recipes.
 
-## Tech Stack
+> [!NOTE]
+> All playground routes are structured as Next.js App Router Server Components, exposing full OpenGraph and Twitter Card metadata alongside colocated client components.
 
-- **Framework**: [Next.js 16](https://nextjs.org/) (App Router, Turbopack)
-- **Library**: [React 19](https://react.dev/)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/), [Motion](https://motion.dev/) (Framer Motion)
-- **UI Components**: [shadcn/ui](https://ui.shadcn.com/), [Radix UI](https://www.radix-ui.com/)
-- **PWA**: [Serwist](https://serwist.js.org/)
-- **Icons**: [Lucide React](https://lucide.dev/), [React Icons](https://react-icons.github.io/react-icons/)
-- **Editors**:
-  - `@monaco-editor/react`
-  - `quill`
-  - `@editorjs/editorjs`
+## Supported Editors
+
+| Editor | Focus Area | Output Format | Key Specialties | Route |
+| :--- | :--- | :--- | :--- | :--- |
+| **Quill.js** | Rich Text | HTML & Delta JSON | Modular architecture, custom formats, inline styling | [`/playground/quill`](src/app/playground/quill) |
+| **Monaco Editor** | Code Editing | Source code / Text | VS Code engine, multi-language IntelliSense, diff views | [`/playground/monaco`](src/app/playground/monaco) |
+| **Editor.js** | Block-styled Content | Clean JSON | Block-based workflow, headless CMS ready, pluggable tools | [`/playground/editorjs`](src/app/playground/editorjs) |
+
+## Features
+
+- **Live Evaluation**: Test formatting, block creation, syntax highlighting, and data serialization in real-time.
+- **PWA & Offline Support**: Offline service worker caching and installable progressive web app capabilities powered by **Serwist**.
+- **Modern Design System**: Built with **Tailwind CSS 4**, **shadcn/ui**, and **Radix UI** primitives with seamless dark and light mode themes.
+- **Optimized SEO & Metadata**: Fully configured Server Component routes with OpenGraph and Twitter cards, dynamic sitemap, and robots configuration.
+- **Performance Focused**: Next.js Turbopack compilation with code-splitting and dynamic client component imports for heavy browser-only dependencies.
+
+## Architecture & Directory Structure
+
+```text
+src/
+├── app/
+│   ├── playground/
+│   │   ├── _components/     # Isolated Client Components for editors
+│   │   ├── editorjs/        # Editor.js route & metadata
+│   │   ├── monaco/          # Monaco route & metadata
+│   │   └── quill/           # Quill route & metadata
+│   ├── layout.tsx           # Root layout, theme, metadataBase & analytics
+│   ├── page.tsx             # Landing page & editor selector
+│   ├── robots.ts            # Dynamic robots.txt generation
+│   ├── sitemap.ts           # Dynamic sitemap.xml generation
+│   └── sw.ts                # Serwist service worker definition
+├── components/
+│   ├── ui/                  # Reusable shadcn/ui components
+│   ├── navbar.tsx           # Navigation bar with theme toggle
+│   └── footer.tsx           # Global footer
+└── lib/
+    └── utils.ts             # Styling and class merge utilities
+public/
+├── meta/                    # OpenGraph / Twitter preview assets
+└── icon-*.png               # PWA application icons
+```
 
 ## Getting Started
 
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) (v20 or higher recommended)
-- [pnpm](https://pnpm.io/) (preferred package manager)
+- [pnpm](https://pnpm.io/) (v9 or higher recommended)
 
 ### Installation
 
@@ -53,49 +87,24 @@
    pnpm install
    ```
 
-3. Run the development server:
+3. Start the development server:
    ```bash
    pnpm dev
    ```
 
-The application will be available at [http://localhost:3000](http://localhost:3000).
+The application runs by default at [http://localhost:3000](http://localhost:3000).
 
-### Available Scripts
+> [!TIP]
+> Use `pnpm dev` to run Turbopack and the Serwist service worker watcher concurrently. If you only need a single build run before starting Next.js dev, use `pnpm dev:once`.
 
-- `pnpm dev`: Starts the development server with Turbopack and Serwist watch mode.
-- `pnpm build`: Builds the application for production.
-- `pnpm start`: Starts the production server.
-- `pnpm lint`: Runs ESLint for code quality checks.
-- `pnpm format`: Formats code using Prettier.
-- `pnpm typecheck`: Runs TypeScript type checks.
+## Available Scripts
 
-## 📂 Project Structure
-
-```text
-src/
-├── app/            # Next.js App Router (pages and layouts)
-│   ├── playground/ # Individual editor implementations
-│   └── globals.css # Global styles and Tailwind imports
-├── components/     # Reusable UI components
-│   └── ui/         # shadcn/ui primitive components
-├── hooks/          # Custom React hooks
-├── lib/            # Utility functions and shared logic
-public/         # Static assets and PWA manifest
-```
-
-## Contributing
-
-Contributions are welcome! If you have suggestions for new editors to add or features to improve the playground, feel free to open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-Created with ❤️ by [fapethedev](https://github.com/fapethedev)
-
-## Contact
-
-- Email [@fapethedev](mailto:mpetrivlin@gmail.com)
-- LinkedIn [@fapethedev](https://www.linkedin.com/in/abiola-fatigba-a0532a27b/)
+| Command | Description |
+| :--- | :--- |
+| `pnpm dev` | Starts Next.js development server with Turbopack and Serwist in watch mode |
+| `pnpm dev:once` | Builds the service worker once and starts Next.js development server |
+| `pnpm build` | Compiles Next.js for production and builds the Serwist service worker |
+| `pnpm start` | Starts the production server |
+| `pnpm typecheck` | Validates TypeScript types across the project (`tsc --noEmit`) |
+| `pnpm lint` | Runs ESLint checks |
+| `pnpm format` | Formats code using Prettier |
