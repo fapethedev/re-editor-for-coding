@@ -14,6 +14,7 @@ import { Analytics } from "@vercel/analytics/next";
 import InsightsProvider from "@/components/InsightsProvider";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000"),
   title: {
     template: `%s | Re-Editor`,
     default: "Re-Editor",
